@@ -1,4 +1,4 @@
-package utils;
+package com.jaagro.utils;
 
 import java.io.Serializable;
 import java.util.Map;
@@ -100,7 +100,20 @@ public class BaseResponse implements Serializable {
     }
 
     /**
+     * @param status 错误状态码
+     * @param errorMsg 错误消息
+     * @return 错误结果的的快速生成
+     */
+    public static BaseResponse errorInstance(int status, String errorMsg) {
+        BaseResponse response = new BaseResponse();
+        response.setStatusCode(status);
+        response.setStatusMsg(errorMsg);
+        return response;
+    }
+
+    /**
      * 尚未登录
+     *
      * @return
      */
     public static BaseResponse notLogin() {
@@ -139,6 +152,7 @@ public class BaseResponse implements Serializable {
 
     /**
      * 快捷返回主键为null
+     *
      * @param idName
      * @return
      */
@@ -155,6 +169,7 @@ public class BaseResponse implements Serializable {
     /**
      * 与service层中ServiceResult对象引用error()或者toResult()方法添加service层自定义错误匹配使用
      * 但为了规范，只能在Controller中使用
+     *
      * @param map
      * @return
      */

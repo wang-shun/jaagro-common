@@ -1,4 +1,4 @@
-package utils;
+package com.jaagro.utils;
 
 
 import java.lang.reflect.Field;
