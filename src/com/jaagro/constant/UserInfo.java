@@ -24,6 +24,8 @@ public class UserInfo implements Serializable {
 
     private String name;
 
+    private Integer departmentId;
+
     public Integer getId() {
         return id;
     }
@@ -88,6 +90,14 @@ public class UserInfo implements Serializable {
         this.name = name;
     }
 
+    public Integer getDepartmentId() {
+        return departmentId;
+    }
+
+    public void setDepartmentId(Integer departmentId) {
+        this.departmentId = departmentId;
+    }
+
     @Override
     public String toString() {
         return "UserInfo{" +
@@ -99,6 +109,7 @@ public class UserInfo implements Serializable {
                 ", status=" + status +
                 ", userType='" + userType + '\'' +
                 ", name='" + name + '\'' +
+                ", departmentId=" + departmentId +
                 '}';
     }
 
@@ -112,13 +123,14 @@ public class UserInfo implements Serializable {
                 Objects.equals(getPassword(), userInfo.getPassword()) &&
                 Objects.equals(getPhoneNumber(), userInfo.getPhoneNumber()) &&
                 Objects.equals(getSalt(), userInfo.getSalt()) &&
-                Objects.equals(status, userInfo.status) &&
+                Objects.equals(getStatus(), userInfo.getStatus()) &&
                 Objects.equals(getUserType(), userInfo.getUserType()) &&
-                Objects.equals(getName(), userInfo.getName());
+                Objects.equals(getName(), userInfo.getName()) &&
+                Objects.equals(getDepartmentId(), userInfo.getDepartmentId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getLoginName(), getPassword(), getPhoneNumber(), getSalt(), status, getUserType(), getName());
+        return Objects.hash(getId(), getLoginName(), getPassword(), getPhoneNumber(), getSalt(), getStatus(), getUserType(), getName(), getDepartmentId());
     }
 }
