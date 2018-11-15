@@ -45,7 +45,13 @@ public enum ResponseStatusCode {
     /**
      * 查询到数据为空
      */
-    QUERY_DATA_EMPTY(504, "没有查询到数据");
+    QUERY_DATA_EMPTY(504, "没有查询到数据"),
+
+    /**
+     * 微服务不可用
+     */
+    MICRO_SERVICE_ERROR(40001,"微服务不可用");
+
 
     /**
      * 返回状态码

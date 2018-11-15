@@ -6,7 +6,7 @@ import java.util.Map;
 /**
  * @author admin
  */
-public class BaseResponse implements Serializable {
+public class BaseResponse<T> implements Serializable {
 
     /**
      * 状态
@@ -21,7 +21,7 @@ public class BaseResponse implements Serializable {
     /**
      * 数据
      */
-    private Object data;
+    private T data;
 
     public String getStatusMsg() {
         return statusMsg;
@@ -32,11 +32,11 @@ public class BaseResponse implements Serializable {
         return this;
     }
 
-    public Object getData() {
+    public T getData() {
         return data;
     }
 
-    public BaseResponse setData(Object data) {
+    public BaseResponse setData(T data) {
         this.data = data;
         return this;
     }
@@ -69,8 +69,8 @@ public class BaseResponse implements Serializable {
      * @return BaseResponse
      * @description 成功结果的的快速生成
      */
-    public static BaseResponse successInstance(Object date) {
-        BaseResponse response = new BaseResponse();
+    public static <T> BaseResponse successInstance(T date) {
+        BaseResponse response = new BaseResponse<T>();
         response.setStatusCode(ResponseStatusCode.OPERATION_SUCCESS);
         return response.setData(date);
     }
@@ -100,7 +100,7 @@ public class BaseResponse implements Serializable {
     }
 
     /**
-     * @param status 错误状态码
+     * @param status   错误状态码
      * @param errorMsg 错误消息
      * @return 错误结果的的快速生成
      */
@@ -173,8 +173,8 @@ public class BaseResponse implements Serializable {
      * @param map
      * @return
      */
-    public static BaseResponse service(Map<String, Object> map) {
-        BaseResponse baseResponse = new BaseResponse();
+    public static <T> BaseResponse service(Map<String, T> map) {
+        BaseResponse baseResponse = new BaseResponse<T>();
         Object data = map.get(ServiceKey.data.name());
         Boolean success = (Boolean) map.get(ServiceKey.success.name());
         if (success) {
