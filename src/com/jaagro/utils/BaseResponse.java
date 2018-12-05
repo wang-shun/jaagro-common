@@ -70,7 +70,7 @@ public class BaseResponse<T> implements Serializable {
      * @description 成功结果的的快速生成
      */
     public static <T> BaseResponse successInstance(T date) {
-        BaseResponse response = new BaseResponse<T>();
+        BaseResponse<T> response = new BaseResponse<>();
         response.setStatusCode(ResponseStatusCode.OPERATION_SUCCESS);
         return response.setData(date);
     }
@@ -174,8 +174,8 @@ public class BaseResponse<T> implements Serializable {
      * @return
      */
     public static <T> BaseResponse service(Map<String, T> map) {
-        BaseResponse baseResponse = new BaseResponse<T>();
-        Object data = map.get(ServiceKey.data.name());
+        BaseResponse<T> baseResponse = new BaseResponse<>();
+        T data = map.get(ServiceKey.data.name());
         Boolean success = (Boolean) map.get(ServiceKey.success.name());
         if (success) {
             return successInstance(data);
